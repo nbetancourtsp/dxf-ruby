@@ -134,18 +134,9 @@ module DXF
 		end
 	end
 
-	class Polyline < Entity
-		# @!attribute points
-		#   @return [Array<Point>]  The points that make up the polyline
-		attr_reader :points
-
+	class Polyline < LWPolyline
 		def initialize(*points)
 			@points = points.drop(1).map {|a| Point[a]}
-		end
-
-		# Return the individual line segments
-		def lines
-			points.each_cons(2).map {|a,b| Line.new a, b}
 		end
 	end
 
